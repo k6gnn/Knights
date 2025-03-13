@@ -1,0 +1,42 @@
+private static void printBoard() {
+    traceLog.append("2) Path graphically:\n\n");
+    shortLog.append("2) Path graphically:\n\n");
+
+    // Print Y-axis label
+    traceLog.append("Y, V ^\n");
+    shortLog.append("Y, V ^\n");
+
+    // Print the board with Y-coordinates
+    for (int i = N - 1; i >= 0; i--) {
+        traceLog.append(String.format("%2d |", i + 1));
+        shortLog.append(String.format("%2d |", i + 1));
+
+        for (int j = 0; j < N; j++) {
+            String cell = String.format("%3d ", board[j][i] + 1);
+            traceLog.append(cell);
+            shortLog.append(cell);
+        }
+        traceLog.append("\n");
+        shortLog.append("\n");
+    }
+
+    // Print separator line
+    traceLog.append("   ");
+    shortLog.append("   ");
+    for (int j = 0; j < N; j++) {
+        traceLog.append("----");
+        shortLog.append("----");
+    }
+    traceLog.append("-> X, U\n");
+    shortLog.append("-> X, U\n");
+
+    // Print X-coordinates
+    traceLog.append("   ");
+    shortLog.append("   ");
+    for (int j = 0; j < N; j++) {
+        traceLog.append(String.format("%3d ", j + 1));
+        shortLog.append(String.format("%3d ", j + 1));
+    }
+    traceLog.append("\n");
+    shortLog.append("\n");
+}
