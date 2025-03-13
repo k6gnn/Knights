@@ -10,6 +10,7 @@ public class App {
     private static final int[] moveY = {1, 2, 2, 1, -1, -2, -2, -1};
     private static int trials = 0;
     private static StringBuilder traceLog = new StringBuilder();
+    private static StringBuilder shortLog = new StringBuilder();
     private static boolean printOnScreen;
 
     public static void main(String[] args) {
@@ -31,18 +32,26 @@ public class App {
         for (int[] row : board) Arrays.fill(row, -1); 
         board[startX][startY] = 0; 
 
-        traceLog.append("PART 1. Data\n")
-                .append("1) Board: " + N + "x" + N + "\n")
-                .append("2) Initial position: X=" + (startX + 1) + ", Y=" + (startY + 1) + ", L=1\n\nPART 2. Trace\n");
+        String part1 = "PART 1. Data\n" +
+                "1) Board: " + N + "x" + N + "\n" +
+                "2) Initial position: X=" + (startX + 1) + ", Y=" + (startY + 1) + "\n\n";
+        traceLog.append(part1);
+        shortLog.append(part1);
+
+        traceLog.append("PART 2. Trace\n");
 
         if (solveKnightTour(startX, startY, 1)) {
-            traceLog.append("\nPART 3. Results\n1) Path is found. Trials=" + trials + "\n");
+            String part3 = "\nPART 3. Results\n1) Path is found. Trials=" + trials + "\n";
+            traceLog.append(part3);
+            shortLog.append(part3);
             printBoard();
         } else {
-            traceLog.append("\nPART 3. Results\nNo solution found. Trials=" + trials + "\n");
+            String part3 = "\nPART 3. Results\nNo solution found. Trials=" + trials + "\n";
+            traceLog.append(part3);
+            shortLog.append(part3);
         }
 
-        writeToFile("out-short.txt", traceLog.toString());
+        writeToFile("out-short.txt", shortLog.toString());
         writeToFile("out-long.txt", traceLog.toString());
 
         if (printOnScreen) {
@@ -79,11 +88,15 @@ public class App {
 
     private static void printBoard() {
         traceLog.append("2) Path graphically:\n\n");
+        shortLog.append("2) Path graphically:\n\n");
         for (int i = N - 1; i >= 0; i--) {
             for (int j = 0; j < N; j++) {
-                traceLog.append(String.format("%3d ", board[j][i] + 1));
+                String cell = String.format("%3d ", board[j][i] + 1);
+                traceLog.append(cell);
+                shortLog.append(cell);
             }
             traceLog.append("\n");
+            shortLog.append("\n");
         }
     }
 
